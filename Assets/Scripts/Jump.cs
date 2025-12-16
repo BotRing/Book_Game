@@ -1,5 +1,7 @@
-using UnityEngine;
+using System;
 using System.Collections;
+using UnityEngine;
+using System.Threading.Tasks;
 
 public class FloatRotateLaunch : MonoBehaviour
 {
@@ -10,6 +12,9 @@ public class FloatRotateLaunch : MonoBehaviour
 
     private Coroutine floater;
     private bool isFloating = false;
+    private bool coolDown = false;
+
+
 
     void Start()
     {
@@ -18,8 +23,9 @@ public class FloatRotateLaunch : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !coolDown)
         {
+            
             if (!isFloating && floater == null)
             {
                 floater = StartCoroutine(FloatHoverThenReady());
@@ -27,6 +33,8 @@ public class FloatRotateLaunch : MonoBehaviour
             else
             {
                 LaunchForward();
+                coolDown = true;
+                Invoke("CoolDown", 4f);
             }
         }
 
@@ -36,13 +44,16 @@ public class FloatRotateLaunch : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void OnCollisionEnter(Collision collision)
     {
-        if (isFloating)
+        if (collision.gameObject.CompareTag("Bridge"))
         {
-            //rb.linearVelocity = new Vector3(rb.linearVelocity.x, floatUpSpeed, rb.linearVelocity.z);
+            CoolDown();
+            Debug.Log("Cooldown deactivated.");
         }
     }
+
+
 
     private IEnumerator FloatHoverThenReady()
     {
@@ -53,7 +64,7 @@ public class FloatRotateLaunch : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         rb.linearVelocity = Vector3.zero; 
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(10f);
         isFloating = false;
         rb.useGravity = true;
         floater = null;
@@ -82,5 +93,13 @@ public class FloatRotateLaunch : MonoBehaviour
         Vector3 launchDirection = transform.up;
 
         rb.linearVelocity = launchDirection * launchSpeed;
+    }
+   
+    void CoolDown()
+    {
+        coolDown = false;
+        isFloating = false;
+        rb.useGravity = true;
+        StopCoroutine(FloatHoverThenReady());
     }
 }

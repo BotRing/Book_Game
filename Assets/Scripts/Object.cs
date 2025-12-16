@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PingPongMovement : MonoBehaviour
 {
-    public Vector3 pointA = new Vector3(-5, 0, 0); // Start position
-    public Vector3 pointB = new Vector3(5, 0, 0);  // End position
+    public Vector3 pointA = new (-5, 0, 0); // Start position
+    public Vector3 pointB = new (5, 0, 0);  // End position
     public float speed = 2f;
 
     private Vector3 target;
