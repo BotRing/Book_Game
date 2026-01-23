@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 public class FloatRotateLaunch : MonoBehaviour
 {
@@ -14,18 +15,22 @@ public class FloatRotateLaunch : MonoBehaviour
     private bool isFloating = false;
     private bool coolDown = false;
 
+    private bool hasJumpeded = false;
+    private bool hasLefted = false;
+    private bool hasRighted = false;
 
 
     void Start()
     {
         if (!rb) rb = GetComponent<Rigidbody>();
+        floater = null;
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && !coolDown)
+        if (hasJumpeded && !coolDown)
         {
-            
+            hasJumpeded = false;
             if (!isFloating && floater == null)
             {
                 floater = StartCoroutine(FloatHoverThenReady());
@@ -73,11 +78,11 @@ public class FloatRotateLaunch : MonoBehaviour
     private void HandleRotationInput()
     {
         // Rotate the object based on player input (A/D keys)
-        if (Input.GetKey(KeyCode.A))
+        if (hasLefted)
         {
             transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime, Space.Self);
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (hasRighted)
         {
             transform.Rotate(Vector3.forward, -rotationSpeed * Time.deltaTime, Space.Self);
         }
@@ -101,5 +106,20 @@ public class FloatRotateLaunch : MonoBehaviour
         isFloating = false;
         rb.useGravity = true;
         StopCoroutine(FloatHoverThenReady());
+    }
+
+    public void NotTheOtherTwo(InputAction.CallbackContext context)
+    {
+        hasJumpeded = context.ReadValueAsButton();
+    }
+
+    public void Left(InputAction.CallbackContext context)
+    {
+        hasLefted = context.ReadValueAsButton();
+    }
+
+    public void Rightinator(InputAction.CallbackContext context)
+    {
+        hasRighted = context.ReadValueAsButton();
     }
 }
