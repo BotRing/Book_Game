@@ -21,7 +21,7 @@
                     "id": "52533e7b-e628-4b48-92c0-f3b511516c1a",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
@@ -30,7 +30,7 @@
                     "id": "1ccd9539-1029-4a2b-92d3-26fda32d2f93",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 }
             ],

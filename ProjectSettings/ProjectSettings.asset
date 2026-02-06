@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: My project
+  companyName: GCTC
+  productName: Book Game
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -144,7 +144,8 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: -944628639613478452, guid: a5ef4312a65781549bd22b61b7299470, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -266,7 +267,7 @@ PlayerSettings:
   useCustomGradlePropertiesTemplate: 0
   useCustomGradleSettingsTemplate: 0
   useCustomProguardFile: 0
-  AndroidTargetArchitectures: 2
+  AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: 
@@ -522,7 +523,10 @@ PlayerSettings:
       m_Height: 720
       m_Kind: 1
       m_SubKind: 
-  m_BuildTargetBatching: []
+  m_BuildTargetBatching:
+  - m_BuildTarget: Android
+    m_StaticBatching: 1
+    m_DynamicBatching: 0
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
