@@ -24,6 +24,9 @@ public class FloatRotateLaunch : MonoBehaviour
     {
         if (!rb) rb = GetComponent<Rigidbody>();
         floater = null;
+#if UNITY_ANDROID || UNITY_IOS
+        rotationSpeed = 900f;
+#endif
     }
 
     void Update()
@@ -53,7 +56,7 @@ public class FloatRotateLaunch : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bridge"))
         {
-            CoolDown();
+            coolDown = false;
             Debug.Log("Cooldown deactivated.");
         }
     }
@@ -121,5 +124,20 @@ public class FloatRotateLaunch : MonoBehaviour
     public void Rightinator(InputAction.CallbackContext context)
     {
         hasRighted = context.ReadValueAsButton();
+    }
+
+    public void NotTheOtherTwoInput(bool context)
+    {
+        hasJumpeded = context;
+    }
+
+    public void LeftInput(bool context)
+    {
+        hasLefted = context;
+    }
+
+    public void RightinatorInput(bool context)
+    {
+        hasRighted = context;
     }
 }
