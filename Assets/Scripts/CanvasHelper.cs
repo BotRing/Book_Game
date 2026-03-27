@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 [RequireComponent(typeof(Canvas))]
 public class CanvasHelper : MonoBehaviour
 {
