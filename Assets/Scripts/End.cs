@@ -1,16 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class End : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void OnCollisionEnter(Collision info)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (info.gameObject.tag == "Tower")
+        {
+            Debug.Log("You won!");
+            
+            SceneManager.LoadScene(3);
+        }
     }
 }

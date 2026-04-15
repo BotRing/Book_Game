@@ -11,8 +11,8 @@ public class Death : MonoBehaviour
         if (hasDieded)
         {
             hasDieded = false;
-            transform.localPosition = new Vector3(47, 5, 41);
-            Player.instance.position = new float[] { 47, 5, 41 };
+            transform.localPosition = new Vector3(-72, 18, 41);
+            Player.instance.position = new float[] { -72, 18, 41 };
             SaveSystem.SavePlayer(Player.instance);
         }
     }
@@ -23,7 +23,7 @@ public class Death : MonoBehaviour
         {
             Debug.Log("Object fell below threshold, resetting position.");
             hasDieded = true;
-            Player.instance.position = new float[] { 47, 5, 41 };
+            Player.instance.position = new float[] { -72, 18, 41 };
             SaveSystem.SavePlayer(Player.instance);
             if (TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
